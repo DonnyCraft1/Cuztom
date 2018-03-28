@@ -1,5 +1,6 @@
 // Import Model
 const Command = require('../models/command');
+const Action = require('../models/action');
 const error = require('../util/error');
 
 exports.run = a => {
@@ -7,7 +8,7 @@ exports.run = a => {
   if (!a.args[0]) return a.message.channel.send('Please name your command');
 
   // Find the command
-  Command.find({name: a.args[0], guild: a.message.guild.id}).exec((err, command) => {
+  Command.find({name: a.args[0], guild: a.message.guild.id}).populate('actions').exec((err, command) => {
 
     // If no command, return
     if (!command[0]) {
@@ -32,7 +33,9 @@ exports.run = a => {
       },
       {
         name: 'Actions',
-        value: '- ' + command[0].actions.join('\n- ')
+        value: '- ' + command[0].actions.map(action => {
+          return action.name;
+        }).join('\n- ')
       }],
       timestamp: command[0].date,
       footer: {
