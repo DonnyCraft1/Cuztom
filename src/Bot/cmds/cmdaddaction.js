@@ -31,7 +31,6 @@ exports.run = a => {
       // Duplicate Actions && Already Added
       let alreadyExist = 0;
       cmd[0].actions.forEach(cmdAct => {
-        console.log(cmdAct, action[0]._id);
         if (cmdAct.equals(action[0]._id)) {
           alreadyExist += 1;
         }
