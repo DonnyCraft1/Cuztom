@@ -15,9 +15,23 @@ exports.run = (a) => {
       return a.message.channel.send(error.message('1001'));
     }
 
-    // The Command Exist
+    // Check If User Has All Required Permissions
+    let missingPerms = [];
+    cmd[0].permissions.forEach((perm, i) => {
 
-    // Add The Cmd To a //a.cmd == The Command Object Returned From MongoDB //a.command == The Command Name (String) That Was Executed By The User
+      // Trying To Find Permission Name
+      let roleName = a.message.guild.roles.get(perm);
+      if (roleName) roleName = roleName.name;
+      else roleName = perm + ' - Warning, this role does not exist!';
+
+      if (!a.message.member.roles.has(perm)) missingPerms.push(roleName);
+    });
+
+    if (missingPerms.length > 0) {
+      return a.message.channel.send(`**Missing Permission(s) / Role(s)**\n- ${missingPerms.join('\n- ')}`);
+    }
+
+    // Add The Cmd To Object a //a.cmd == The Command Object Returned From MongoDB //a.command == The Command Name (String) That Was Executed By The User
     a.cmd = cmd[0];
 
     // Loop Trought The Actions And Call Their Function
