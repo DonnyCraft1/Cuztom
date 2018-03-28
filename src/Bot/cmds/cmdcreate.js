@@ -1,6 +1,6 @@
 // Import Model
 const Command = require('../models/command');
-const error = require('../error');
+const error = require('../util/error');
 
 exports.run = a => {
 

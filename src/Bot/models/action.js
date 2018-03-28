@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Command Schema
-const commandSchema = new mongoose.Schema ({
+const actionSchema = new mongoose.Schema ({
 
   // The Command Name
   name: {
@@ -21,28 +21,27 @@ const commandSchema = new mongoose.Schema ({
     required: true
   },
 
+  // What Type The Action Is. Not Called Type Because It Is A Keyword
+  actionType: {
+    type: String,
+    required: true,
+    default: '0' // See actiontype.js
+  },
+
+  // The Vaule Of The Action
+  value: {
+    type: String,
+    required: true,
+    default: 'Change the value to change this message'
+  },
+
   // The Date Command Is Created
   date: {
     type: Date,
     required: true,
     default: Date.now
   },
-
-  // Permissions, Array Of Role IDs
-  permissions: {
-    type: Array,
-    required: true,
-    default: []
-  },
-
-  // The Action
-  actions: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'action',
-    required: true,
-    default: []
-  }]
 });
 
 // Define And Export
-module.exports = mongoose.model('command',commandSchema);
+module.exports = mongoose.model('action', actionSchema);
