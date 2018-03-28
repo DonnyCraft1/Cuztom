@@ -21,6 +21,7 @@ module.exports = message => {
   }
 
   if (!message.member.roles.exists('name', config.permissionRole)) return message.channel.send(`You need to have a role named **${config.permissionRole}** to manage my commands!`);
+
   //  Finding command
   try {
 		let cmdFile = require(`../cmds/${command}`);

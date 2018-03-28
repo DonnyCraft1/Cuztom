@@ -18,7 +18,7 @@ const placeholders = [
   {
     "name": "input",
     "run": (inp, a, name) => {
-      return inp.replaceAll('{' + name + '}', a.result || '#');
+      return inp.replaceAll('{' + name + '}', a.result || '#input');
     }
   },
   {
