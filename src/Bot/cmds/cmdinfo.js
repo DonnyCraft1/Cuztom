@@ -10,13 +10,13 @@ exports.run = a => {
   // Find the command
   Command.find({name: a.args[0], guild: a.message.guild.id}).populate('actions').exec((err, command) => {
 
+    // If error, return
+    if (err) return a.message.channel.send(`And error occured`);
+
     // If no command, return
     if (!command[0]) {
       return a.message.channel.send('I did not find that command, commands are case-sensitive!');
     }
-
-    // If error, return
-    if (err) return console.log(err);
 
     // If duplicate commands, return
     if (command[1]) {
@@ -35,6 +35,16 @@ exports.run = a => {
         name: 'Actions',
         value: '- ' + command[0].actions.map(action => {
           return action.name;
+        }).join('\n- ')
+      },
+      {
+        name: 'Permission',
+        value: '- ' + command[0].permissions.map(perm => {
+          // Trying To Find Permission Name
+          let roleName = a.message.guild.roles.get(perm);
+          if (roleName) roleName = roleName.name;
+          else roleName = perm + ' - Warning, this role does not exist!';
+          return roleName;
         }).join('\n- ')
       }],
       timestamp: command[0].date,
