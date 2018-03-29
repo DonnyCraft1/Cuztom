@@ -199,5 +199,5 @@ const type7 = (a, i, action) => {
 
 // Not One Them Above
 const _default = (a, i) => {
-  a.message.channel.send(error.message(1003))
+  a.message.channel.send(error.message(1101))
 }
