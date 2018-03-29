@@ -29,11 +29,11 @@ const commandSchema = new mongoose.Schema ({
   },
 
   // Permissions, Array Of Role IDs
-  permissions: {
-    type: Array,
+  permissions: [{
+    type: String,
     required: true,
     default: []
-  },
+  }],
 
   // The Action
   actions: [{
