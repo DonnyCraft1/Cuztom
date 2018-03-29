@@ -10,7 +10,7 @@ exports.run = a => {
   Command.find({guild: a.message.guild.id}).populate('actions').exec((err, commands) => {
 
     // If error, return
-    if (err) return a.message.channel.send(`And error occured`);
+    if (err) return a.message.channel.send(`And error occured. Try to run **${a.config.prefix}fix**`);
 
     // If no command, return
     if (!commands[0]) {
