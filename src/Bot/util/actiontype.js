@@ -9,4 +9,4 @@ const types = [
   'BAN'
 ]
 
-exports.default = types;
+exports.types = types;
