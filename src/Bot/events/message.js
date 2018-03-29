@@ -5,7 +5,7 @@ const customCmdHandler = require('../util/customCmdHandler');
 module.exports = message => {
   // Checking
   if (message.author.bot) return;
-  if (!message.guild) return(message.channel.send(`My commands canno't be used outside guilds!`));
+  if (!message.guild) return(message.channel.send(`My commands cannot be used outside guilds!`));
 
   // Setting variables
   const client = message.client;
