@@ -1,7 +1,8 @@
 const errors = {
   1001: 'Duplicate Commands',
   1002: 'Duplicate Actions',
-  1003: 'Action Type Not Valid'
+  1003: 'Duplicate Permissions',
+  1101: 'Action Type Not Valid'
 }
 
 const message = (err) => {
