@@ -7,9 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "*",
     "body-parser": "*",
-    "mongoose": "*"
+    "ejs": "^2.5.8",
+    "express": "*",
+    "mongoose": "*",
+    "serve-favicon": "^2.5.0"
   },
   "author": "Tobias Lystad & Daniel",
   "license": "ISC"
