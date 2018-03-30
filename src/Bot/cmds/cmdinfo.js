@@ -11,7 +11,7 @@ exports.run = a => {
   Command.find({name: a.args[0], guild: a.message.guild.id}).populate('actions').exec((err, command) => {
 
     // If error, return
-    if (err) return a.message.channel.send(`And error occured. Try to run **${a.config.prefix}fix**`);
+    if (err) return a.message.channel.send(`And error occured`);
 
     // If no command, return
     if (!command[0]) {
@@ -38,7 +38,7 @@ exports.run = a => {
         }).join('\n- ')
       },
       {
-        name: 'Permission',
+        name: 'Permissions',
         value: '- ' + command[0].permissions.map(perm => {
           // Trying To Find Permission Name
           let roleName = a.message.guild.roles.get(perm);
