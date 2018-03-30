@@ -24,7 +24,7 @@ exports.run = a => {
       guild: a.message.guild.id
     })
     .then(action => {
-      a.message.channel.send(`Successfully created the action ${a.args[0]}`);
+      a.message.channel.send(`Successfully created the action **${a.args[0]}**`);
     });
   });
 }
