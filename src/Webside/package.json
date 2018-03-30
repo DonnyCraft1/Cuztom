@@ -1,0 +1,16 @@
+{
+  "name": "cuztomwebside",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongoose": "*"
+  },
+  "author": "Tobias Lystad & Daniel",
+  "license": "ISC"
+}
