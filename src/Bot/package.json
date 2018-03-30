@@ -1,12 +1,12 @@
 {
   "name": "cuztom",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Daniel",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.2",
