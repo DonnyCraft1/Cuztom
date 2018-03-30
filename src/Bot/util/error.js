@@ -2,7 +2,8 @@ const errors = {
   1001: 'Duplicate Commands',
   1002: 'Duplicate Actions',
   1003: 'Duplicate Permissions',
-  1101: 'Action Type Not Valid'
+  1101: 'Action Type Not Valid',
+  1102: 'Could Not Remove Action Refrences'
 }
 
 const message = (err) => {
