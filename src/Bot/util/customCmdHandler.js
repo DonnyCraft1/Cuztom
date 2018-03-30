@@ -8,7 +8,7 @@ const replacePlaceholder = require('./replacePlaceholder');
 exports.run = (a) => {
   Command.find({name: a.command, guild: a.message.guild.id}).populate('actions').exec((err, cmd) => {
     if (err) return console.log(err);
-    if (!cmd[0]) return a.message.channel.send('No such command exist!');
+    if (!cmd[0]) return a.message.channel.send(`There is no custom command called **${a.command}**. Commands are case sensitive!`);
 
     // Check If Duplicate
     if (cmd[1]) {
