@@ -13,7 +13,7 @@ require('./util/eventLoader')(client);
 mongoose.Promise = global.Promise;
 
 // Connect To DataBase
-const db = mongoose.connect('mongodb://localhost:27017/Cuztom');
+const db = mongoose.connect(`mongodb://${config.db.user}:${config.db.pwd}@ds227939.mlab.com:27939/cuztom`);//('mongodb://localhost:27017/Cuztom');
 
 // LogIn The Bot
 client.login(config.token);
