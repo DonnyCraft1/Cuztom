@@ -19,9 +19,10 @@ exports.run = a => {
 
     // Send command info
     const embed = new Discord.RichEmbed()
-      .setTitle(`__**${a.message.guild.name}'s Custom Commands**__`);
+      .setColor(3447003)
+      .setTitle(`Here's an overview of ${a.message.guild.name}'s custom commands`);
     commands.forEach(cmd => {
-      embed.addField(cmd.name, '- ' + cmd.actions.map(action => {
+      embed.addField(`__${cmd.name}__ ↓actions↓`, '- ' + cmd.actions.map(action => {
         return action.name;
       }).join('\n- '));
     })
