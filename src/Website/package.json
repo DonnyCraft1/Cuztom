@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "body-parser": "*",
+    "btoa": "^1.2.1",
     "ejs": "^2.5.8",
     "express": "*",
     "mongoose": "*",
+    "node-fetch": "^2.1.2",
     "serve-favicon": "^2.5.0"
   },
   "author": "Tobias Lystad & Daniel",

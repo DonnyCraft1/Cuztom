@@ -31,7 +31,28 @@ app.get(`/`, (req, res) => {
   res.render(`index`);
 });
 
+app.get(`/me`, (req, res) => {
+  res.render(`account`);
+});
+
 // Listen to port
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);
+});
+
+
+// Error Catcher - Must Be Last
+app.use((err, req, res, next) => {
+  switch (err.message) {
+    case 'NoCodeProvided':
+      return res.status(400).send({
+        status: 'ERROR',
+        error: err.message,
+      });
+    default:
+      return res.status(500).send({
+        status: 'ERROR',
+        error: err.message,
+      });
+  }
 });
