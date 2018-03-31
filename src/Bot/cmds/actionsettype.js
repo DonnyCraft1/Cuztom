@@ -18,8 +18,6 @@ exports.run = a => {
     if (indexType == -1) return a.message.channel.send(`Invalid action type`);
 
     action[0].update({actionType: indexType}, (err, result) => {
-      console.log(indexType);
-      console.log(err, result);
       if (err || !result.n > 0) return a.message.channel.send(`An error occured, couldn't update action type`);
       a.message.channel.send(`Successfully set the type of action **${action[0].name}** to **${a.args[1]}**`);
     });

@@ -25,7 +25,6 @@ exports.run = a => {
       roleName = role.name;
     }
     else roleId = a.args[1];
-    console.log(roleName);
 
     cmd[0].update({$pull: {"permissions": roleId}}).exec((err, result) => {
       if (err || !result.nModified > 0) return a.message.channel.send(`An error occured, could not remove that permission`)

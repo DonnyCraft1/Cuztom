@@ -45,7 +45,7 @@ exports.run = a => {
       cmd[0].update({$push: {actions: action[0]._id}}, (err, result) => {
 
         if (err) {
-          console.log(err);
+          a.message.channel.send(`An error occured, couldn't add the action to the command`);
         } else {
           a.message.channel.send('Successfully added action **' + action[0].name + '** to command **' + cmd[0].name + '**');
         }
