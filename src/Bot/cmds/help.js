@@ -8,7 +8,7 @@ exports.run = a => {
     .setTitle(`Cuztom - The Custom Command Bot`)
 
     .setDescription(`
-      Hi! I'm ***Cuztom***.
+      Hi! I'm ***[Cuztom](https://discordapp.com/oauth2/authorize?client_id=422382447523528714&scope=bot&permissions=8)***.
       Unlike other bots, I have no limitations for custom commands.
       This bot is realy powerfull and customizable!
       We also have a really helpfull support guild, and it's really easy to get started.
@@ -17,7 +17,6 @@ exports.run = a => {
     .addField(`Contact`, `
       Join my **[guild](https://discord.gg/Jyj3esH)** for support!
       Check out the **[wiki (under dev)](https://github.com/DonnyCraft1/Cuztom/wiki)** to get started!
-      The online **[dashboard (under dev)](#)** makes it really easy to set up custom commands!
     `)
 
     .addField(`Get Started`, `
