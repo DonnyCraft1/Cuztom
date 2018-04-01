@@ -24,7 +24,7 @@ module.exports = message => {
 
   //  Finding command
   try {
-		let cmdFile = require(`../cmds/${command}`);
+		let cmdFile = require(`../cmds/${command.toLowerCase()}`);
 	  cmdFile.run({client, message, args, result, config});
     return;
 	} catch (err) {
