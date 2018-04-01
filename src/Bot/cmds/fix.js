@@ -33,14 +33,14 @@ exports.run = async a => {
   
   
   /*
-  // TODO: Duplicate Actions
+  // TODO: Duplicate Actions //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
   actionMsg = await actionMsg.edit(`**~** Cleaning up actions`);
   await wait(1000);
   
   // Get Rid Of Suffix
   const suffixActions = await Action.find({guild: guild}).exec();
-  await suffixActions.forEach( async (act, i) => {
+  const promises = suffixActions.map( async (act, i) => {
     let newActName;
     m = suffixRegex.exec(act.name);
     if (m) {
@@ -50,8 +50,7 @@ exports.run = async a => {
       console.log('Saved!');
     }
   });
-  
-  // TODO: Hey there! executes before Saved. Need a fix!
+  await Promise.all(promises);
   
   // Find All The Actions
   console.log('Hey There!');
@@ -98,19 +97,71 @@ exports.run = async a => {
   actionMsg = await actionMsg.edit(`**✓** Cleaning up actions`);
   
   /*
-  // TODO: Duplicate Commands
+  // TODO: Duplicate Commands //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
   commandMsg = await commandMsg.edit(`**~** Cleaning up commands`);
   await wait(1000);
   
+  // Get Rid Of Suffix
+  const suffixCommands = await Command.find({guild: guild}).exec();
+  const promises2 = suffixCommands.map( async (cmd, i) => {
+    let newCmdName;
+    m = suffixRegex.exec(cmd.name);
+    if (m) {
+      newCmdName = cmd.name.substring(0, m.index);
+      suffixCommands[i].name = newCmdName;
+      await suffixCommands[i].save();
+      console.log('Saved!');
+    }
+  });
+  await Promise.all(promises2);
+  
+  // Find All The Commands
+  console.log('Hey There!');
   const commands = await Command.find({guild: guild}).exec();
+  
+  
+  // Loop Trough All The Commands
+  await commands.forEach( async (cmd, i) => {
+    
+    // Change The Name With Timeout Set To 200 Times
+    for (let j = 0; j < 200; j++) {
+      
+      // Suffix Is The Number Added Behind The Name If Duplicates
+      let suffix = (j == 0) ? '' : `(${j})`
+      
+      // Filter Out The Commands With The Same Name, To See The Difference
+      let testCommands = commands.filter((testCmd) => {
+        return testCmd.name != cmd.name + suffix;
+      });
+      
+      // Calculate The Difference
+      let difference = commands.length - testCommands.length;
+      
+      // If Not Duplicates      
+      // When j Is 0, There Is One More In Difference Because The Command Itself counts. When j Is More Than 0, It Is Not Included In The Difference
+      if ((difference < 2 && j == 0) || (difference == 0 && j > 0)) {
+        // If The Name Was Not Changed
+        if (j == 0) {
+          // Exit The Loop
+          break;
+          
+        // If The Name Was Changed
+        } else {
+          commands[i].name = cmd.name + suffix;
+          const savedCommand = await commands[i].save();
+          break;
+        }
+      }
+    }
+  });
   
   
   // Update Status Message
   commandMsg = await commandMsg.edit(`**✓** Cleaning up commands`);
   
   /*
-  // TODO: Refrences To Deleted Action
+  // TODO: Refrences To Deleted Action //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   */
   refrencesMsg = await refrencesMsg.edit(`**~** Cleaning up all action refrences`);
   await wait(1000);
