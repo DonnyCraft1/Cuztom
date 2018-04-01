@@ -1,7 +1,7 @@
-// Import Model
+const Discord = require('discord.js');
 const Action = require('../models/action');
 const error = require('../util/error');
-const Discord = require('discord.js');
+const actionTypes = require('../util/actiontype');
 
 exports.run = a => {
 
@@ -21,7 +21,7 @@ exports.run = a => {
       .setColor(3447003)
       .setTitle(`__**${a.message.guild.name}'s Custom Actions**__`);
     actions.forEach(act => {
-      embed.addField(`${act.name}`, `type: ${act.actionType}\nvalue: ${act.value}`);
+      embed.addField(`${act.name}`, `type: ${actionTypes.types[act.actionType]}\nvalue: ${act.value}`);
     });
     a.message.channel.send({embed});
   })
