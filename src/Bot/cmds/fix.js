@@ -53,7 +53,6 @@ exports.run = async a => {
   await Promise.all(promises);
   
   // Find All The Actions
-  console.log('Hey There!');
   const actions = await Action.find({guild: guild}).exec();
 
   
@@ -111,13 +110,11 @@ exports.run = async a => {
       newCmdName = cmd.name.substring(0, m.index);
       suffixCommands[i].name = newCmdName;
       await suffixCommands[i].save();
-      console.log('Saved!');
     }
   });
   await Promise.all(promises2);
   
   // Find All The Commands
-  console.log('Hey There!');
   const commands = await Command.find({guild: guild}).exec();
   
   
@@ -165,6 +162,24 @@ exports.run = async a => {
   */
   refrencesMsg = await refrencesMsg.edit(`**~** Cleaning up all action refrences`);
   await wait(1000);
+
+  const refActions = await Action.find({guild: guild}).exec();
+  const refCommands = await Command.find({guild: guild}).exec();
+
+  console.log(refActions, refCommands);
+
+  refCommands.forEach(cmd => {
+    cmd.actions.forEach(cmdAct => {
+      let exist = false;
+      refActions.forEach(refAct => {
+        if(refAct._id.equals(cmdAct)) exist = true;
+      });
+      if (!exist) {
+        await a.message.channel.send(`Found a broken refrence! **${cmdAct}** in command **${cmd.name}**`);
+        await cmd.update({$pull: {"actions": cmdAct}}).exec();
+      }
+    });
+  });
   
   // Update Status Message
   refrencesMsg = await refrencesMsg.edit(`**✓** Cleaning up all action refrences`);
