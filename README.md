@@ -1,2 +1,2 @@
 # Cuztom
-Cuztom is a Discordbot built for custom commands.
+Cuztom is a Discord bot built for custom commands.
