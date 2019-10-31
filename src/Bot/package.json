@@ -11,6 +11,6 @@
   "dependencies": {
     "discord.js": "^11.3.2",
     "moment": "^2.21.0",
-    "mongoose": "^5.0.12"
+    "mongoose": "^5.7.5"
   }
 }
